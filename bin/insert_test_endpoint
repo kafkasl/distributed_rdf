@@ -1,0 +1,19 @@
+#!/usr/bin/python 
+
+
+def insert(endpoint):
+    sparql = SPARQLWrapper("%s/update" % endpoint)
+    sparql.setQuery("""
+    PREFIX dc: <http://purl.org/dc/elements/1.1/>
+    INSERT DATA
+    {
+     <http://example/book1> dc:title "A new book" ;
+                            dc:creator "A.N.Other" .
+    }
+    """)
+    sparql.method = 'POST'
+    sparql.query()
+
+from SPARQLWrapper import SPARQLWrapper
+
+insert("http://localhost:3030/Data1")

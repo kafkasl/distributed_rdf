@@ -1,0 +1,24 @@
+22:56:15 INFO  TDB dataset: directory=../data/endpoint_1/fuseki
+22:56:15 INFO  Dataset path = /Data1
+22:56:15 INFO  Fuseki 1.6.0 2017-05-02T17:38:25+0000
+22:56:15 INFO  Started 2017/06/08 22:56:15 CEST on port 3030
+22:57:09 INFO  [1] GET http://localhost:3030/Data1/query?query=PREFIX+cus%3A+%3Chttp%3A//example.com/base%23/%3E%0ACONSTRUCT+%7B%3Fp+%3Fa+%3Fb%7D++WHERE+%7B%3Fp+a+%3Fb+.+%7D%0A&output=json&results=json&format=json
+22:57:09 WARN  SPARQL Query: Unrecognize request parameter (ignored): results
+22:57:09 INFO  [1] Query = PREFIX cus: <http://example.com/base#/> CONSTRUCT {?p ?a ?b}  WHERE {?p a ?b . } 
+22:57:09 INFO  [1] exec/construct
+22:57:09 INFO  [1] 200 OK (542 ms) 
+22:57:53 INFO  [2] GET http://localhost:3030/Data1/query?query=PREFIX+cus%3A+%3Chttp%3A//example.com/base%23/%3E%0ACONSTRUCT+%7B%3Fp+%3Fa+%3Fb%7D++WHERE+%7B%3Fp+%3Fa+%3Fb+.+%7D%0A&output=json&results=json&format=json
+22:57:53 WARN  SPARQL Query: Unrecognize request parameter (ignored): results
+22:57:53 INFO  [2] Query = PREFIX cus: <http://example.com/base#/> CONSTRUCT {?p ?a ?b}  WHERE {?p ?a ?b . } 
+22:57:53 INFO  [2] exec/construct
+22:57:53 INFO  [2] 200 OK (344 ms) 
+23:40:02 INFO  [3] GET http://localhost:3030/Data1/query?query=PREFIX+cus%3A+%3Chttp%3A//example.com/base%23/%3E%0ACONSTRUCT+%7B%3Fp+%3Fa+%3Fb%7D++WHERE+%7B%3Fp+%3Fa+%3Fb+.+%7D%0A&output=xml&results=xml&format=xml
+23:40:02 WARN  SPARQL Query: Unrecognize request parameter (ignored): results
+23:40:02 INFO  [3] Query = PREFIX cus: <http://example.com/base#/> CONSTRUCT {?p ?a ?b}  WHERE {?p ?a ?b . } 
+23:40:02 INFO  [3] exec/construct
+23:40:03 INFO  [3] 200 OK (579 ms) 
+23:48:37 INFO  [4] GET http://localhost:3030/Data1/query?query=PREFIX+cus%3A+%3Chttp%3A//example.com/base%23/%3E%0ACONSTRUCT+%7B%3Fp+%3Fa+%3Fb%7D++WHERE+%7B%3Fp+%3Fa+%3Fb+.+%7D%0A&output=xml&results=xml&format=xml
+23:48:37 WARN  SPARQL Query: Unrecognize request parameter (ignored): results
+23:48:37 INFO  [4] Query = PREFIX cus: <http://example.com/base#/> CONSTRUCT {?p ?a ?b}  WHERE {?p ?a ?b . } 
+23:48:37 INFO  [4] exec/construct
+23:48:37 INFO  [4] 200 OK (285 ms) 
