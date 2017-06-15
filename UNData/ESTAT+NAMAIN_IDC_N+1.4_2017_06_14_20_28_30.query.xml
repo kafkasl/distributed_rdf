@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<StructureSpecificDataQuery xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/message">
+  <!--NSI Web client v3.11.0.0-->
+  <Header>
+    <ID>IDREF12</ID>
+    <Test>false</Test>
+    <Prepared>2017-06-14T20:28:30.7138631+02:00</Prepared>
+    <Sender id="Unknown" />
+    <Receiver id="Unknown" />
+  </Header>
+  <Query>
+    <ReturnDetails detail="Full" observationAction="Active" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query">
+      <LastNObservations>0</LastNObservations>
+      <Structure dimensionAtObservation="TIME_PERIOD" structureID="StructureId">
+        <Structure xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common">
+          <Ref agencyID="ESTAT" id="NA_MAIN" version="1.4" xmlns="" />
+        </Structure>
+      </Structure>
+    </ReturnDetails>
+    <DataWhere xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query">
+      <Dataflow>
+        <Ref agencyID="ESTAT" id="NAMAIN_IDC_N" version="1.4" xmlns="" />
+      </Dataflow>
+      <Or>
+        <DimensionValue>
+          <ID>FREQ</ID>
+          <Value operator="equal">A</Value>
+        </DimensionValue>
+      </Or>
+    </DataWhere>
+  </Query>
+</StructureSpecificDataQuery>

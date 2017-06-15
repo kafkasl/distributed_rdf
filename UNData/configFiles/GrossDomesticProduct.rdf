@@ -1,0 +1,63 @@
+@prefix rr: <http://www.w3.org/ns/r2rml#>.          
+@prefix dbo: <http://dbpedia.org/ontology/>.
+@prefix un: <http://data.un.org/>.
+@prefix dbpedia2: <http://dbpedia.org/property/>.
+@prefix res: <http://dbpedia.org/resource/>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix sch: <http://schema.org/>.
+@prefix own: <http://example.com/base#>.
+
+
+<#GrossMap>
+    rr:logicalTable [ rr:tableName "GrossDomesticProduct"; ];
+    rr:subjectMap [
+        rr:template 'http://example.com/base#/NationalAccountsOfficialCountryData{"prkey"}';
+        rr:class own:NationalAccountsOfficialCountryData;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate dbpedia2:origin;
+        rr:objectMap [ rr:template 'http://example.com/base#{"Country_or_Area"}'; 
+        rr:termType rr:IRI;
+        ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate own:value;
+        rr:objectMap [ rr:template '{"Value"}';
+        rr:termType rr:Literal;
+        ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate dbo:currency;
+        rr:objectMap [ rr:template 'http://dbpedia.org/resource/{"Currency"}'; rr:termType rr:IRI;
+        ];
+    ];
+    rr:predicateObjectMap [
+        rr:predicate own:year;
+        rr:objectMap [ rr:template '{"Year"}'; rr:termType rr:Literal
+        ];
+    ].
+    
+<#Countries>
+    rr:logicalTable [ rr:tableName "GrossDomesticProduct"; ];
+    rr:subjectMap [
+        rr:template 'http://example.com/base#{"Country_or_Area"}'; 
+        rr:class dbo:Country;
+    ];
+    rr:predicateObjectMap [
+        rr:predicate rdf:type;
+        rr:objectMap [ rr:template 'http://schema.org/Country'; 
+        rr:termType rr:IRI;
+        ];
+    ].
+
+<#Currencies>
+    rr:logicalTable [ rr:tableName "GrossDomesticProduct"; ];
+    rr:subjectMap [
+        rr:template 'http://example.com/base#{"Currency"}';    
+    ];
+    rr:predicateObjectMap [
+        rr:predicate rdf:type;
+        rr:objectMap [ rr:template 'http://dbpedia.org/ontology/Currency';
+        rr:termType rr:IRI;
+        ];
+    ].

@@ -1,0 +1,5 @@
+@prefix log:   <http://example.com/base#> .
+
+log:destinationFile  log:destinationFileSize
+                "27905839" ;
+        log:timestamp            "Thu Jun 08 21:28:45 CEST 2017" .
