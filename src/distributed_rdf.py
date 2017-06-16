@@ -98,6 +98,11 @@ def get_consolidated_triplets(query, source_endpoints):
     for i, endpoint in enumerate(source_endpoints):
         data.append(do_query(endpoint, query))
 
+    # for d in data:
+    #     print("Consolidated data:")
+    #     for s, p, o in d:
+    #         print s, p, o
+
     joined_graph = join_triplets(data)
     return joined_graph
 
@@ -112,9 +117,13 @@ def insert(endpoint, query):
 def do_global_query(query, queries, disambiguations_file, *inputs):
     query = query[0]
     # Load disambiguation rules if present
-    if verbose:
-        print("[LOG] Query: " + str(query))
+    # if verbose:
+    print("[LOG] Query: " + str(query))
 
+    # for inp in inputs:
+    #     print("Global query inputs:")
+    #     for s,p,o in inp:
+    #         print s, p, o
     merge_needed = False
     # Check if all arguments are in local Fuseki graph
     for i in range(0, len(inputs)):
@@ -128,6 +137,7 @@ def do_global_query(query, queries, disambiguations_file, *inputs):
         if disambiguations_file:
             disambiguations.parse(disambiguations_file, format=guess_format(disambiguations_file))
         g = inputs[0]
+        print("Merging %s inputs" % len(inputs))
         for i in range(1, len(inputs)):
             g = merge_graphs(g, inputs[i], disambiguations)
         insert_to_local(g)
@@ -153,7 +163,7 @@ def insert_to_local(input_data):
         query += "%s %s %s." % (s.n3(), p.n3(), o.n3())
 
     query += "}"
-    print("Insert query to be submitted to %s:\n[%s]" % (endpoint, query))
+    #print("Insert query to be submitted to %s:\n[%s] lcs" % (endpoint, query))
     insert(endpoint, query)
 
 def query_local_fuseki(query):
@@ -170,7 +180,8 @@ def do_query(endpoint, query):
     return data
 
 def build_subquery_entity(prefix, type_query):
-    query = "%s CONSTRUCT { ?s ?p ?o } WHERE { ?s ?p ?o . ?s a %s . FILTER(isLiteral(?o)) . } " % (prefix, type_query)
+    query = "%s CONSTRUCT { ?s ?p ?o } WHERE { {?s ?p ?o . ?s a %s . FILTER(isLiteral(?o)) . } UNION { ?s ?p ?o . ?s a %s . ?s a ?o . } } " % (
+    prefix, type_query, type_query)
     print("Query type %s" % type(query))
     print(" * Subquery build for [%s] is: \n   - %s" % (type_query, query))
     return query
@@ -179,21 +190,6 @@ def build_subquery_pair(prefix, type_sub, type_obj):
     query = "%s CONSTRUCT { ?s ?p ?o } WHERE { { ?s ?p ?o . ?s a %s . ?o a %s . } UNION { ?o ?p ?s . ?s a %s . ?o a %s . } }" % (prefix, type_sub, type_obj, type_sub, type_obj)
     print(" * Subquery for pair [%s %s] is:  \n   - %s" % (type_sub, type_obj, query))
     return query
-"""
-PREFIX dbo: <http://dbpedia.org/ontology/>
-SELECT ?a ?b ?c WHERE {
-{
-?a ?b ?c .
-?a a dbo:Country .
-?c a dbo:Person .
-} UNION {
-?a ?b ?c .
-?c a dbo:Country .
-?a a dbo:Person .
-}
-}
-LIMIT 100
-"""
 
 def get_prefix(query):
     elements = query.split()
