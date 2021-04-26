@@ -50,7 +50,7 @@
 
 		<!-- Apache commons versions -->
 		<apache-commons-configuration.version>1.10</apache-commons-configuration.version>
-		<apache-commons-io.version>2.5</apache-commons-io.version>
+		<apache-commons-io.version>2.7</apache-commons-io.version>
 
 		<!-- Javassist -->
 		<javassist.version>3.21.0-GA</javassist.version>
